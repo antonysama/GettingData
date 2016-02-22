@@ -55,6 +55,8 @@ tapply(m$quintile, m$Income.Group, sum)
 
 
 # ddply example
+install.packages(plyr) 
+library(plyr) 
 ddply(InsectSprays,.(spray),summarise,sum=sum(count))
 
 #two melt & dcast eg.

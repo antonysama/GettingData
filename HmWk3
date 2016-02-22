@@ -1,0 +1,76 @@
+#advice on quizes:https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-week-3/
+
+
+#q1: A:125, 238,262
+df<-read.csv("hid2.csv")
+#create vector
+agricultureLogical<-c("agricultureLogical")
+#create field 
+df[,"agricultureLogical"]<-ifelse (df$ACR==3 & df$AGS==6,"T", "F")
+# apply logic on field
+which(df$agricultureLogical=="T")
+
+#q2: A: -15259150 -10575416 
+install.packages("jpeg")
+library("jpeg")
+j<-readJPEG("jeff.jpg", native = T)
+#.3 & .8 quantile
+quantile(j, probs=c(0.3, 0.8))
+
+#q3: A:189 matches, 13th country is St. Kitts and Nevis
+df1<-read.csv("EDSTATS.csv")
+df2<-read.csv("GDP.csv")
+#filter NA "" from field
+df4<-df2[complete.cases(df2$Gross.domestic.product.2012),]
+#Field Names
+names(df4)<-c("CountryCode","Gross.domestic.product.2012","empty", "country", "value")
+names(df2)
+str(df2)
+#merge by common field name COuntryCode for both, 
+#though it doesn't have to be common
+m<-merge(df1,df4,by.df1="CountryCode", by.df4="CountryCode")
+#check if obs has decreased from previous dfs
+#o<-m[order(as.numeric(m$Gross.domestic.product.2012)),]
+#plyr order 
+install.packages(plyr)
+library(plyr)
+o<-arrange(m, desc(Gross.domestic.product.2012))
+head(o, n=13)
+str(df2)
+
+
+#4: A: 32.96667, 91.91304
+#find mean GDP rank  by IncomeGroup
+tapply(m$Gross.domestic.product.2012, m$Income.Group, mean)
+
+#5:A:5
+#find quintiles
+quantile(m$Gross.domestic.product.2012, probs=c(0.2,0.4,0.6, 0.8, 1))
+#create variable
+quintile<-c("quintile")
+#create numeric field
+m[,"quintile"]<-as.numeric(ifelse(m$Gross.domestic.product.2012<38.6,1,0))
+#compare quintile by incom group
+tapply(m$quintile, m$Income.Group, sum)
+
+
+# ddply example
+ddply(InsectSprays,.(spray),summarise,sum=sum(count))
+
+#two melt & dcast eg.
+install.packages("reshape2")
+library("reshape2")
+head(InsectSprays)
+Imelt<-melt(InsectSprays, id=c("spray"), measure.vars=c("value"))
+tail(Imelt)
+InsectSprays<-melt(InsectSprays)
+Icast<-dcast(Imelt, spray~variable, mean)
+Icast
+a = dcast(InsectSprays, spray~variable)
+
+mtcars$carname<-rownames(mtcars)
+head(mtcars)    
+cmelt<-melt(mtcars, id=c("carname", wt"), measure.vars = c("mpg", "hp"))
+head(cmelt, n=3)
+dc<-dcast(cmelt, wt~variable, mean)
+dc

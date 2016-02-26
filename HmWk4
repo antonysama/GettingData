@@ -1,0 +1,27 @@
+#Q1: ""   "15"
+hid<-read.csv("hid.csv")
+head(hid, n=1)
+wgtp<-strsplit(names(hid),"wgtp")
+wgtp[[123]]
+
+#Q2:377652.4
+gdp<-read.csv("GDP.csv", skip = 3, nrows=191, stringsAsFactors = F)
+#check strings
+str(gdp)
+#substitute all "," with ""
+k<-gsub(",","",gdp$US.dollars)
+#convert to numeric
+j<-as.numeric(k)
+#estimate mean, filter NAs
+mean(j, na.rm=T)
+
+#Q3:grep("^United",countryNames), 3
+grep("*United",gdp$Economy)
+
+#Q4
+df1<-read.csv("EDSTATS.csv")
+names(gdp)<-c("CountryCode","Gross.domestic.product.2012",
+              "empty", "country", "value")
+m<-merge(df1,gdp,by.df1="CountryCode", by.gdp="CountryCode")
+
+#Q5:250:47

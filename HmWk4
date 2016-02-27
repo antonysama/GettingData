@@ -1,3 +1,5 @@
+#https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-week-4/
+
 #Q1: ""   "15"
 hid<-read.csv("hid.csv")
 head(hid, n=1)
@@ -18,10 +20,32 @@ mean(j, na.rm=T)
 #Q3:grep("^United",countryNames), 3
 grep("*United",gdp$Economy)
 
-#Q4
+#Q4 grep("[Ff]iscal(.*)June", m$Special.Notes)
+#reaad edsstats
 df1<-read.csv("EDSTATS.csv")
+#pass names to gdp
 names(gdp)<-c("CountryCode","Gross.domestic.product.2012",
               "empty", "country", "value")
+#merge both
 m<-merge(df1,gdp,by.df1="CountryCode", by.gdp="CountryCode")
+str(m)
+# find countries for which the end of the fiscal year 
+#is available, & end in June?
+
 
 #Q5:250:47
+#quiz instructions only work on R console
+install.packages("quantmod")
+library("quantmod")
+amzn = getSymbols("AMZN",auto.assign=FALSE)
+sampleTimes = index(amzn)
+#formatting to show year, then finding those ending in '12, & counting
+q<-grep("12$", format(sampleTimes, "%y"))
+length(q)
+#formatting to show weekday year, then finding those ending in Mon '12
+v<-grep("Mon 12", format(sampleTimes, "%a %y"))
+length(v)
+
+#Extra: to count the number of times a value "x" appears in the vector.
+numbers <- c(4,23,4,23...)
+as.data.frame(table(numbers))

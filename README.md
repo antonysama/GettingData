@@ -1,5 +1,5 @@
 #Courtsey note to reviwer. When reading the dataset, use syntax similar to the following:
-## df<-read.table("CleanDataset.csv", header=T)
+## df<-read.table("TidyData.csv", header=T)
 
 #The following is a description of the step-by-step processs, meant to support reproducibiluty of the results:
 # I first read the x_test.txt, x_training.txt, & features.txt with read.table
@@ -21,5 +21,5 @@
 ###'Depending on the interpretation, this could support either data in the wide (first) or the long form (second) being in tidy format, ### and the marking rubric specifically accepts wide or long. In previous sessions most people were opting for wide.' (source: ###https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-the-assignment/)
 
 ###Courtsey reminder to reviwer. When reading the dataset, use syntax similar to the following:
-### df<-read.table("CleanDataset.csv", header=T)
+### df<-read.table("TidyData.csv", header=T)
 

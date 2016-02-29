@@ -1,0 +1,26 @@
+"Activity" & "Subject" - The fist couple variables in the clean data set are as described in the features text & the assignment
+  - The 6 "Activity" fields are as described in the activity labels text file
+
+The balance 79 variables are a SUBSET limited to the Mean & Standard Deviation from ~ 550 variables described in features or "x" text files.
+  - Terms include: 
+      - acceleration-body linear acceleration and 
+      - angular velocity-body 
+      - transformation- f or Fourier transofrmation
+      - magnitude-magnitude of the three-dimensional signals calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+      - Jerk signal- Jerk signal of body signals
+
+The R script refers to 6 of those provided in the assignment dataset, plus some that were created in the process:
+  -x_test - variables of the test dataset
+  -x - training- variables of the training dataset
+  -y_test - activities of the test dataset
+  -y_training - activites of the training dataset
+  -s_test - subjects of the test dataset
+  -s_training - subjects of the training dataset
+  -c -list of 79 labels that are a SUBSET limited to the Mean & Standard Deviation from ~ 550 variables described in features
+  -x_testc -79 variables that are a SUBSET limited to the Mean & Standard Deviation, part of the test set
+  -n -same as c in this thread above
+  -l -list used as a first step to merging the new x_test & x_training data tables
+  -m -the new merged data table
+  -e -the final clean data table 
+  
+  
